@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiệp Cưới — Quốc Vương & Mẫn Hằng</title>
+
+    <!-- Font và icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(180deg, #fff7f7, #ffeaea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Quicksand", sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            width: 95%;
+            max-width: 420px;
+            height: 90vh;
+            background-color: #e6b6b6;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            padding-bottom: 30px;
+        }
+
+        .card::-webkit-scrollbar { width: 6px; }
+        .card::-webkit-scrollbar-thumb {
+            background: #e6b6b6;
+            border-radius: 6px;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background-image: url('images/capdoi.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 22px 22px 0 0;
+        }
+
+        .music-btn {
+            position: sticky;
+            top: 15px;
+            right: 15px;
+            float: right;
+            margin: 0 15px 10px 0;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.25s ease, background 0.3s ease;
+        }
+        .music-btn:hover { transform: scale(1.1); }
+        .music-btn i { color: #b55b5b; font-size: 22px; }
+
+        h1 {
+            font-family: "Dancing Script", cursive;
+            color: #b55b5b;
+            font-size: clamp(28px, 6vw, 42px);
+            margin: 25px 10px 15px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #444;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            background: #ffffffcc;
+            border-radius: 18px;
+            margin: 20px auto;
+            width: 90%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px 10px;
+        }
+
+        .invitation-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 30px 20px;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .invitation-left,.invitation-right { 
+            width: 48%; 
+        }
+        .invitation-left img, .invitation-right img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 15px;
+        }
+
+        .invitation-right h3, .invitation-left h3 {
+            color: #b55b5b;
+            font-family: "Dancing Script", cursive;
+            font-size: 40px;
+            margin: 0 0 20px 0;
+        }
+
+        .invitation-right p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .time-right h3 {
+            color: #b55b5b;
+            font-family: "Dancing Script", cursive;
+            font-size: 30px;
+            margin: 0 0 12px 0;
+            text-align: right;
+            line-height: 1.3;
+        }
+
+        .time-right small { font-size: 15px; color: #444; }
+
+        .countdown {
+            margin-top: 15px;
+            font-size: 22px;
+            color: #b55b5b;
+            font-weight: 600;
+            line-height: 1.6;
+            min-height: 100px;
+            text-align: left;
+        }
+
+        .countdown div { margin-bottom: 6px; }
+
+        .event-time {
+            margin-top: 12px;
+            font-size: 17px;
+            color: #333;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .section img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            font-family: "Dancing Script", cursive;
+            font-size: 30px;
+            color: #b55b5b;
+            margin-bottom: 14px;
+        }
+
+        .section p {
+            font-size: 17px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .map-section {
+            text-align: center;
+            padding: 25px 15px 35px 15px;
+            background: linear-gradient(180deg, #fff7f7, #ffeaea);
+            border-radius: 22px;
+            margin: 25px 0 45px 0;
+        }
+
+        .map-section h3 {
+            font-family: "Dancing Script", cursive;
+            font-size: 30px;
+            color: #b55b5b;
+            margin-bottom: 18px;
+        }
+
+        .map-container {
+            width: 92%;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        .address-text {
+            margin-top: 14px;
+            font-size: 17px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .map-button {
+            display: inline-block;
+            margin-top: 18px;
+            background-color: #b55b5b;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background 0.3s ease;
+        }
+        .map-button:hover { background-color: #a04a4a; }
+
+    </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <button class="music-btn" id="musicBtn" title="Bật/Tắt nhạc">
+        <i class="fas fa-volume-mute"></i> <!-- Icon tắt âm ban đầu -->
+    </button>
+
+    <div class="hero"></div>
+
+    <h1>Quốc Vương & Mẫn Hằng</h1>
+    <p class="subtitle">Thiệp mời đến chung vui ngày trọng đại của chúng mình</p>
+
+    <!-- PHẦN THƯ MỜI -->
+    <div class="section invitation-section">
+      <div class="invitation-wrapper">
+        <div class="invitation-left">
+          <img src="images/om.jpg" alt="Cô dâu chú rể">
+          <h3>Thời gian<br><small>(Time)</small></h3>
+          <div class="countdown" id="countdown">
+            <div>Đang tải...</div>
+          </div>
+          <p class="event-time">Thứ 7   23 - 11 - 2025<br>Ngày 23 - 10 âm lịch <br> 16:00 PM</p>
+        </div>
+        <div class="invitation-right">
+          <h3>Thư Mời</h3>
+          <p>Chúng tôi trân trọng kính mời bạn đến chung vui cùng gia đình trong ngày hạnh phúc của đôi chúng tôi.</p>
+          <img src="images/d5aae11f-aa76-4b72-9ec8-986eaf183ecb.jpg" alt="Cô dâu chú rể"> 
+        </div>
+      </div>
+    </div>
+
+    <!-- PHẦN BẢN ĐỒ -->
+    <div class="map-section">
+      <h3>Địa chỉ</h3>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3731.303765703689!2d106.05579997596448!3d20.738478497684145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135b8cbff1add65%3A0xd27ea3b240e94f29!2zMjYxIE5ndXnhu4VuIEzGsMahbmcgQuG6sW5nLCBMxrDGoW5nIELhurFuZywgS2ltIMSQ4buZbmcsIEjGsG5nIFnDqm4sIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1761329924307!5m2!1svi!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <p class="address-text">261 Nguyễn Lương Bằng - Lương Bằng - Hưng Yên</p>
+      <a class="map-button" href="https://maps.app.goo.gl/oLnkkemL83xtpZfk7" target="_blank">Xem đường đi</a>
+    </div>
+
+    <!-- PHẦN CHUNG VUI -->
+    <div class="section">
+      <img src="images/dattay.jpg" alt="Party">
+      <h2>Chung Vui</h2>
+      <p>Hân hoan chào đón bạn đến chung vui cùng chúng tôi trong ngày hạnh phúc.</p>
+    </div>
+
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="Beautiful In White.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const card = document.getElementById('card');
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    let isPlaying = false;
+    let isUserScrolling = false;
+    let scrollInterval;
+
+    // --- TỰ ĐỘNG CUỘN ---
+    function startAutoScroll() {
+      stopAutoScroll();
+      scrollInterval = setInterval(() => {
+        if (!isUserScrolling) {
+          card.scrollBy(0, 1);
+          if (card.scrollTop + card.clientHeight >= card.scrollHeight - 1) stopAutoScroll();
+        }
+      }, 50);
+    }
+    function stopAutoScroll() { clearInterval(scrollInterval); }
+    startAutoScroll();
+
+    ['mousedown','touchstart','wheel'].forEach(evt => {
+      card.addEventListener(evt, () => { isUserScrolling = true; stopAutoScroll(); });
+    });
+
+    // --- NHẠC ---
+    document.body.addEventListener('click', () => {
+      if (!isPlaying) {
+        music.play().then(() => {
+          isPlaying = true;
+          btn.innerHTML = '<i class="fas fa-music"></i>';
+        }).catch(() => {});
+      }
+    }, { once: true });
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        music.pause();
+        btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      } else {
+        music.play().then(() => {
+          btn.innerHTML = '<i class="fas fa-music"></i>';
+        }).catch(()=>{});
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // --- ĐẾM NGƯỢC ---
+    const countdown = document.getElementById('countdown');
+    const eventDate = new Date("November 23, 2025 16:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "<div>Đã diễn ra!</div>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `
+        <div>${days} Ngày</div>
+        <div>${hours} Giờ</div>
+        <div>${minutes} Phút</div>
+        <div>${seconds} Giây</div>
+      `;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
